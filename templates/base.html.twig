@@ -2,18 +2,101 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
+        <title>{% block title %}Serge Mezui{% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="Portfolio Serge Mezui" name="description">
+        <meta content="Serge Mezui" name="keywords">
 
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+        {% block stylesheets %}
+        <!-- Favicons -->
+        <link href="/assets/img/favicon.png" rel="icon">
+        <link href="/assets/img/favicon.png" rel="apple-touch-icon">
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+        <!-- Vendor CSS Files -->
+        <link href="/assets/vendor/aos/aos.css" rel="stylesheet">
+        <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+        <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+        <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+        <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+        <!-- Template Main CSS File -->
+        <link href="/assets/css/style.css" rel="stylesheet">
         {% endblock %}
+        
     </head>
+
+
+    {% block header %}
+        <!-- ======= Header ======= -->
+        <header id="header">
+            <div class="d-flex flex-column">
+
+            <div class="profile">
+                <img src="/assets/img/avatar-mini.png" alt="" class="img-fluid rounded-circle">
+                <h1 class="text-light"><a href="index.html">Serge Mezui</a></h1>
+                <div class="social-links mt-3 text-center">
+                    <a href="https://twitter.com/serge_mezui" class="twitter"><i class="bx bxl-twitter"></i></a>
+                    <a href="https://www.facebook.com/profile.php?id=100071863734818" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="https://www.instagram.com/sergemezui" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    <a href="https://github.com/SergeMezui16" class="github"><i class="bx bxl-github"></i></a>
+                    <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                </div>
+            </div>
+
+            <nav id="navbar" class="nav-menu navbar">
+                <ul>
+                    <li><a href="#hero" class="nav-link scrollto active"><i class="bx bx-home"></i> <span>Accueil</span></a></li>
+                    <li><a href="#about" class="nav-link scrollto"><i class="bx bx-user"></i> <span>A propos</span></a></li>
+                    <li><a href="#skills" class="nav-link scrollto"><i class="bx bx-book-content"></i> <span>Compétences</span></a></li>
+                    <li><a href="#resume" class="nav-link scrollto"><i class="bx bx-file-blank"></i> <span>Resumé</span></a></li>
+                    <li><a href="#services" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Services</span></a></li>
+                    <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-envelope"></i> <span>Contact</span></a></li>
+                </ul>
+            </nav><!-- .nav-menu -->
+            </div>
+        </header><!-- End Header -->
+    {% endblock %}
+
     <body>
         {% block body %}{% endblock %}
     </body>
+
+
+
+    <!-- ======= Footer ======= -->
+    {% block footer %} 
+    <footer id="footer">
+        <div class="container">
+        <div class="copyright">
+            &copy; Copyright - All Right Reserved <strong><span>PASKER</span></strong>
+        </div>
+        <div class="credits">
+            Designed with ❤️ by <a href="https://sergemezui.com/">Serge Mezui</a>
+        </div>
+        </div>
+    </footer><!-- End  Footer -->
+    {% endblock %}
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+
+    {% block javascripts %}
+        <!-- Vendor JS Files -->
+        <script src="/assets/vendor/purecounter/purecounter.js"></script>
+        <script src="/assets/vendor/aos/aos.js"></script>
+        <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+        <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+        <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+        <script src="/assets/vendor/typed.js/typed.min.js"></script>
+        <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
+        <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+        <!-- Template Main JS File -->
+        <script src="/assets/js/main.js"></script>
+    {% endblock %}
 </html>
