@@ -41,15 +41,25 @@ class HomeController extends AbstractController
             !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['subject']) && !empty($_POST['message'])
         )
         {
+            $name = $request->request->get('name');    
             $email = $request->request->get('email');    
             $subject = $request->request->get('subject');  
             $message = $request->request->get('message');
 
+            $html = "<!DOCTYPE html><html><head><title>New Message</title></head><body><h1>New Message from : {{$name}}</h1>
+            <p><ul>
+                <li>Name : {{$name}}</li>
+                <li>Email : {{$email}}</li>
+                <li>Subject : {{$subject}}</li>
+                <li>Message : {{$message}}</li>
+              </ul></p></body></html>";
+
+
             $mail = (new Email())
-                    ->from($email)
                     ->to('sergemzui2@gmail.com')
-                    ->subject($subject)
-                    ->text($message);
+                    ->addTo('contact@sergemezui.com')
+                    ->subject('New Message From Portfolio')
+                    ->html($html);
     
             $mailer->send($mail);
         }
