@@ -46,17 +46,18 @@ class HomeController extends AbstractController
             $subject = $request->request->get('subject');  
             $message = $request->request->get('message');
 
-            $html = "<!DOCTYPE html><html><head><title>New Message</title></head><body><h1>New Message from : {{$name}}</h1>
+            $html = "<!DOCTYPE html><html><head><title>New Message</title></head><body><h1>New Message from : {$name}</h1>
             <p><ul>
-                <li>Name : {{$name}}</li>
-                <li>Email : {{$email}}</li>
-                <li>Subject : {{$subject}}</li>
-                <li>Message : {{$message}}</li>
+                <li>Name : {$name}</li>
+                <li>Email : {$email}</li>
+                <li>Subject : {$subject}</li>
+                <li>Message : {$message}</li>
               </ul></p></body></html>";
 
 
             $mail = (new Email())
-                    ->to('sergemzui2@gmail.com')
+                    ->from('contact@sergemezui.com')
+                    ->to('sergemezui2@gmail.com')
                     ->addTo('contact@sergemezui.com')
                     ->subject('New Message From Portfolio')
                     ->html($html);
