@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Form\ContactType;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
@@ -20,8 +21,13 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-        return $this->render('home/index.html.twig', [
 
+        $this->addFlash(
+            'info',
+            "<strong>Votre Mail a bien été envoyé !</strong>"
+        );
+        return $this->render('home/index.html.twig', [
+            'form' => $this->createForm(ContactType::class)->createView()
         ]);
     }
 
@@ -35,22 +41,22 @@ class HomeController extends AbstractController
     #[Route('/mail', name: 'mail')]
     public function sendMail(Request $request, MailerInterface $mailer) : RedirectResponse
     {
+        $form = $this->createForm(ContactType::class);
+        $form->handleRequest($request);
+        
+        if($form->isSubmitted() && $form->isValid()){
+            
+            $name = $form->getData()['name'];
+            $email = $form->getData()['email'];
+            $object = $form->getData()['object'];
+            $message = $form->getData()['message'];
 
-        if(
-            isset($_POST['name'], $_POST['email'], $_POST['subject'], $_POST['message']) &&
-            !empty($_POST['name']) && !empty($_POST['email']) && !empty($_POST['subject']) && !empty($_POST['message'])
-        )
-        {
-            $name = $request->request->get('name');    
-            $email = $request->request->get('email');    
-            $subject = $request->request->get('subject');  
-            $message = $request->request->get('message');
 
             $html = "<!DOCTYPE html><html><head><title>New Message</title></head><body><h1>New Message from : {$name}</h1>
             <p><ul>
                 <li>Name : {$name}</li>
                 <li>Email : {$email}</li>
-                <li>Subject : {$subject}</li>
+                <li>Subject : {$object}</li>
                 <li>Message : {$message}</li>
               </ul></p></body></html>";
 
@@ -63,8 +69,20 @@ class HomeController extends AbstractController
                     ->html($html);
     
             $mailer->send($mail);
+
+            $this->addFlash(
+                'info',
+                "<strong>Votre Mail a bien été envoyé !</strong>"
+            );
+        } else {
+
+            $this->addFlash(
+                'danger',
+                "Erreur lors de l'envoie du mail :'<strong>{$form->getErrors()->__toString()}</strong> "
+            );
         }
 
-        return $this->redirectToRoute('home');
+
+        return $this->redirectToRoute('home', ['_fragment' => 'contact']);
     }
 }

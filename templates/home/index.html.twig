@@ -562,32 +562,51 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="/mail" method="post" class="php-email-form">
+            <form action="{{ path('mail')}}" method="post" class="php-email-form">
+            {% for label, messages in app.flashes %}
+
+              <div class="container p-0">
+                  <div class="alert alert-{{ label }} rounded-0">
+                      {% for message in messages %}
+                          <p> {{ message | raw }} </p>
+                      {% endfor %}
+                  </div>
+              </div>
+
+            {% endfor %}
+
+            {{ form_start(form) }}
+            {{ form_row(form._token) }}
               <div class="row">
-                <div class="form-group col-md-6">
-                  <label for="name">Votre Nom</label>
-                  <input type="text" name="name" class="form-control" id="name" required>
+                <div class="col-md-6">
+                  {{ form_row(form.name) }}
+                  {{ form_errors(form.name) }}
                 </div>
-                <div class="form-group col-md-6">
-                  <label for="name">Votre Email</label>
-                  <input type="email" class="form-control" name="email" id="email" required>
+                <div class="col-md-6">
+                  {{ form_row(form.email) }}
+                  {{ form_errors(form.email) }}
                 </div>
               </div>
-              <div class="form-group">
-                <label for="name">Objet</label>
-                <input type="text" class="form-control" name="subject" id="subject" required>
-              </div>
-              <div class="form-group">
-                <label for="name">Message</label>
-                <textarea class="form-control" name="message" rows="10" required></textarea>
-              </div>
+
+                  {{ form_row(form.object) }}
+                  {{ form_errors(form.object) }}
+
+                  {{ form_row(form.message) }}
+                  {{ form_errors(form.message) }}
+
+                  {{ form_row(form.recaptcha) }}
+                  {{ form_errors(form.recaptcha) }}
+
               <div class="my-3">
                 <div class="loading">Loading</div>
                 <div class="error-message"></div>
                 <div class="sent-message">Your message has been sent. Thank you!</div>
               </div>
-              <div class="text-center"><button type="submit">Envoyer le Mail</button></div>
+              <div class="text-center">{{ form_row(form.submit) }}</div>
+                                
             </form>
+
+            {{ form_end(form) }}
           </div>
 
         </div>

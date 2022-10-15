@@ -35,6 +35,15 @@
             "migrations/.gitignore"
         ]
     },
+    "google/recaptcha": {
+        "version": "1.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.1",
+            "ref": "e5a4aa21f2e98d7440ae9aab6b56e307f99dd084"
+        }
+    },
     "phpunit/phpunit": {
         "version": "9.5",
         "recipe": {
@@ -290,5 +299,17 @@
     },
     "twig/extra-bundle": {
         "version": "v3.4.0"
+    },
+    "victor-prdh/recaptcha-bundle": {
+        "version": "1.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.5",
+            "ref": "f604d862b3ce4434d131a0e9b3a2eb7bb1784aff"
+        },
+        "files": [
+            "config/packages/recaptcha.yaml"
+        ]
     }
 }
