@@ -21,11 +21,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(): Response
     {
-
-        $this->addFlash(
-            'info',
-            "<strong>Votre Mail a bien été envoyé !</strong>"
-        );
         return $this->render('home/index.html.twig', [
             'form' => $this->createForm(ContactType::class)->createView()
         ]);
